@@ -215,10 +215,6 @@ static_assert(GLFW_VERSION_MAJOR == VKFW_TARGET_GLFW_VERSION_MAJOR
   #define VKFW_ENUMERATOR2(name_1, name_2) e##name_1
 #endif
 
-#ifdef VKFW_MODULE_IMPLEMENTATION
-export module vkfw;
-#endif
-
 #ifdef VKFW_ENABLE_VULKAN_HPP_MODULE
 import vulkan_hpp;
 #endif
@@ -232,11 +228,7 @@ import std.compat;
   #endif
 #endif
 
-#ifdef VKFW_MODULE_IMPLEMENTATION
-  export namespace VKFW_NAMESPACE {
-#else
 namespace VKFW_NAMESPACE {
-#endif
   enum Boolean { VKFW_ENUMERATOR(True) = GLFW_TRUE, VKFW_ENUMERATOR(False) = GLFW_FALSE };
   enum class KeyAction {
     VKFW_ENUMERATOR(Release) = GLFW_RELEASE,
@@ -1401,11 +1393,7 @@ namespace VKFW_NAMESPACE {
 #endif
 } // namespace VKFW_NAMESPACE
 
-#ifdef VKFW_MODULE_IMPLEMENTATION
-export namespace VKFW_NAMESPACE {
-#else
 namespace VKFW_NAMESPACE {
-#endif
 #ifndef VKFW_NO_SMART_HANDLE
   #ifndef VKFW_NO_INCLUDE_VULKAN_HPP
   template <typename Type>
@@ -1479,11 +1467,7 @@ namespace std {
 } // namespace std
 #endif
 
-#ifdef VKFW_MODULE_IMPLEMENTATION
-export namespace VKFW_NAMESPACE {
-#else
 namespace VKFW_NAMESPACE {
-#endif
 #ifndef VKFW_NO_EXCEPTIONS
   class ErrorCategoryImpl : public std::error_category {
   public:
@@ -1749,7 +1733,7 @@ namespace VKFW_NAMESPACE {
 #endif
 
   struct Nullopt {};
-  VKFW_CONSTEXPR Nullopt nullopt = {};
+  VKFW_CONSTEXPR VKFW_INLINE Nullopt nullopt = {};
   template <typename T> class Optional {
   public:
     using value_type = T;
@@ -3156,11 +3140,7 @@ namespace VKFW_NAMESPACE {
 } // namespace VKFW_NAMESPACE
 
 #ifndef VKFW_NO_STD_FUNCTION_CALLBACKS
-  #ifdef VKFW_MODULE_IMPLEMENTATION
-export namespace VKFW_NAMESPACE {
-  #else
 namespace VKFW_NAMESPACE {
-  #endif
   struct DynamicCallbackStorage {
   #ifdef VKFW_DISABLE_ENHANCED_MODE
     friend void *VKFW_NAMESPACE::getWindowUserPointer(GLFWwindow *window);
