@@ -129,7 +129,7 @@ import vulkan;
 
 #ifdef VKFW_ENABLE_STD_MODULE
   #ifdef VULKAN_HPP_STD_MODULE
-import VULKAN_HPP_STD_MODULE
+import VULKAN_HPP_STD_MODULE;
   #else
 // use std.compat for maximum compatibility
 import std.compat;
