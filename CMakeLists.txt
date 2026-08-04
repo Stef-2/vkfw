@@ -7,10 +7,17 @@ cmake_minimum_required(VERSION 3.20...3.30)
 # so CppModules/CMakeLists.txt forces CMake 3.30 or later.
 option(VKFW_BUILD_CXX_MODULE "Add a C++ module target for vkfw" OFF)
 if(VKFW_BUILD_CXX_MODULE)
-    # This line must be before any call to `project()`
-    set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD
-        "d0edc3af-4c50-42ea-a356-e2862fe7a444"
-    )
+    # This variable must be set before any call to `project()`
+    # Read Help/dev/experimental.rst at CMake's repository for more info
+    if(CMAKE_MAJOR_VERSION EQUAL 4)
+        if(CMAKE_MINOR_VERSION EQUAL 2)
+            set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "d0edc3af-4c50-42ea-a356-e2862fe7a444")
+        elseif(CMAKE_MINOR_VERSION EQUAL 3)
+            set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "451f2fe2-a8a2-47c3-bc32-94786d8fc91b")
+        elseif(CMAKE_MINOR_VERSION EQUAL 4)
+            set(CMAKE_EXPERIMENTAL_CXX_IMPORT_STD "f35a9ac6-8463-4d38-8eec-5d6008153e7d")
+        endif()
+    endif()
 endif()
 
 project(vkfw LANGUAGES CXX)
