@@ -107,7 +107,9 @@ endif()
 
 if(${VKFW_BUILD_WITH_VULKAN_MODULE})
     target_compile_definitions(
-        vkfw-module
-        PRIVATE VKFW_ENABLE_VULKAN_HPP_MODULE
+        vkfw-module PRIVATE
+        VKFW_ENABLE_VULKAN_HPP_MODULE
+        # Vulkan-Hpp named module was renamed from 'vulkan_hpp' to 'vulkan'
+        VKFW_VULKAN_HPP_MODULE_NAME_BEFORE_V1_4_334=$<VERSION_LESS:Vulkan_VERSION,"1.4.334">
     )
 endif()

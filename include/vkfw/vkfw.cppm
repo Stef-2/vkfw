@@ -124,7 +124,11 @@ module;
 export module vkfw;
 
 #ifdef VKFW_ENABLE_VULKAN_HPP_MODULE
+  #if VKFW_VULKAN_HPP_MODULE_NAME_BEFORE_V1_4_334 == 1
 import vulkan_hpp;
+  #else
+import vulkan;
+  #endif
 #endif
 
 #ifdef VKFW_ENABLE_STD_MODULE
